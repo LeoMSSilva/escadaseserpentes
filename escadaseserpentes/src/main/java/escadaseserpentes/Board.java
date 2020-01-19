@@ -38,5 +38,11 @@ public class Board implements Printable{
 			System.out.print(space + " ");
 		System.out.println();
 	}
+	
+	public void setupCounter(Counter[] counters) {
+		for (Counter counter : counters) {
+			counter.goTo(spaceStartHere);
+		}	
+	}
 		
 }
