@@ -44,5 +44,11 @@ public class Board implements Printable{
 			counter.goTo(spaceStartHere);
 		}	
 	}
+
+	public void move(Counter counter, int diceNumber) {
+		// TODO Auto-generated method stub
 		
+	}
+
+
 }
