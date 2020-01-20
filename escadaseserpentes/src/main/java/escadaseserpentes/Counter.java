@@ -24,7 +24,7 @@ public class Counter {
 	public void play(Board board) {
 		Dice dice = Dice.get();
 		int diceNumber = dice.roll();
-		System.out.format("O jogador '%s' jogou o dado e o valor foi: %d", name, diceNumber);
+		System.out.format("O jogador '%s' jogou o dado, tirou o valor %d", name, diceNumber);
 		board.move(this, diceNumber);
 	}
 }
