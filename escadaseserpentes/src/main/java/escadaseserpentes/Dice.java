@@ -8,7 +8,7 @@ public class Dice {
 	
 	private static Dice instance;
 	
-	private Random random;
+	private Random random = new Random();
 	
 	private Dice() {
 		
