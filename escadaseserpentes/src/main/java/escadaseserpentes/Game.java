@@ -8,11 +8,12 @@ public class Game {
 	public void play() {
 
 		Board board = new Board(NUM_SPACES);
+		addTransitions(board);
 		board.print();
 		
 		Counters counters = new Counters(board, NUM_PLAYERS);
 		counters.print();
-		
+				
 		while (!board.gameFinished()) {
 			Counter currentCounter = counters.next();
 			currentCounter.play(board);
@@ -26,5 +27,14 @@ public class Game {
 		
 		Counter winnerCounter = board.getWinnerCounter();
 		System.out.format("O jogador '%s' ganhou a rodada!\n", winnerCounter.getName());
+	}
+
+	private void addTransitions(Board board) {
+		board.addTransition(4, 12);
+		board.addTransition(7, 9);
+		board.addTransition(11, 25);
+		board.addTransition(14, 2);
+		board.addTransition(22, 5);
+		board.addTransition(28, 18);
 	}
 }

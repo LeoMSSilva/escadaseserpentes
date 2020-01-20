@@ -63,6 +63,13 @@ public class Board implements Printable{
 		counter.goTo(newSpace);
 		System.out.format(" e foi para a casa %s\n", newSpace);
 	
+		Transition transition = newSpace.getTransition();
+			
+		if (transition != null) {
+			System.out.format("\tEle encontrou uma %s na casa %s", transition.getType(), newSpace);
+			counter.goTo(transition.getSpaceTo());
+			System.out.format(" e foi para a casa %s\n", transition.getSpaceTo());
+		}
 	}
 	
 	public boolean gameFinished() {
@@ -72,4 +79,12 @@ public class Board implements Printable{
 	public Counter getWinnerCounter() {
 		return winnerCounter;
 	}
-}
+	
+	public void addTransition(int from,int to) {
+		Space spaceFrom = spaces[from];
+		Space spaceTo = spaces[to];
+		
+		Transition transition = new Transition(spaceFrom, spaceTo);
+		spaceFrom.setTransition(transition);
+	}
+}	
