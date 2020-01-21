@@ -1,10 +1,17 @@
-package escadaseserpentes;
+/**
+ * Software usado unicamente para o aprendizado da ferramenta eclipse,
+ * curso oferecido pela Softblue,
+ * todos os direitos são reservados ao donos (https://github.com/softbluecursos/eclipse-na-pratica).
+ */
+package eclipseNaPratica.escadaseserpentes.board;
 
 import java.util.Arrays;
 
-import escadaseserpentes.Space.Type;
+import eclipseNaPratica.escadaseserpentes.board.Space.Type;
+import eclipseNaPratica.escadaseserpentes.counter.Counter;
+import eclipseNaPratica.escadaseserpentes.infrastructure.Printable;
 
-public class Board implements Printable{
+public class Board implements Printable {
 
 	private Space[] spaces;
 	private Space spaceHome;
@@ -13,7 +20,7 @@ public class Board implements Printable{
 
 	public Board(int numSpaces) {
 		spaces = new Space[numSpaces + 2];
-		
+
 		for (int i = 0; i < spaces.length; i++) {
 			if (i == 0) {
 				spaces[i] = new Space(i, Type.START_HERE);
@@ -39,52 +46,52 @@ public class Board implements Printable{
 			System.out.print(space + " ");
 		System.out.println();
 	}
-	
+
 	public void setupCounter(Counter[] counters) {
 		for (Counter counter : counters) {
 			counter.goTo(spaceStartHere);
-		}	
+		}
 	}
 
 	public void move(Counter counter, int diceNumber) {
-		
+
 		Space space = counter.getCurrentSpace();
 		int newSpaceNumber = space.getNumber() + diceNumber;
-		
+
 		Space newSpace;
-		
-		if (newSpaceNumber >= spaceHome.getNumber()){
+
+		if (newSpaceNumber >= spaceHome.getNumber()) {
 			newSpace = spaceHome;
 			winnerCounter = counter;
 		} else {
 			newSpace = spaces[newSpaceNumber];
 		}
-		
+
 		counter.goTo(newSpace);
 		System.out.format(" e foi para a casa %s\n", newSpace);
-	
+
 		Transition transition = newSpace.getTransition();
-			
+
 		if (transition != null) {
 			System.out.format("\tEle encontrou uma %s na casa %s", transition.getType(), newSpace);
 			counter.goTo(transition.getSpaceTo());
 			System.out.format(" e foi para a casa %s\n", transition.getSpaceTo());
 		}
 	}
-	
+
 	public boolean gameFinished() {
-		return winnerCounter != null;		
+		return winnerCounter != null;
 	}
 
 	public Counter getWinnerCounter() {
 		return winnerCounter;
 	}
-	
-	public void addTransition(int from,int to) {
+
+	public void addTransition(int from, int to) {
 		Space spaceFrom = spaces[from];
 		Space spaceTo = spaces[to];
-		
+
 		Transition transition = new Transition(spaceFrom, spaceTo);
 		spaceFrom.setTransition(transition);
 	}
-}	
+}

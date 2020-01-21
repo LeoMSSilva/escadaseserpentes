@@ -1,17 +1,22 @@
-package escadaseserpentes;
+/**
+ * Software usado unicamente para o aprendizado da ferramenta eclipse,
+ * curso oferecido pela Softblue,
+ * todos os direitos são reservados ao donos (https://github.com/softbluecursos/eclipse-na-pratica).
+ */
+package eclipseNaPratica.escadaseserpentes.core;
 
 import java.util.Random;
 
 public class Dice {
 
 	private static final int MAX_NUMBER = 6;
-	
+
 	private static Dice instance;
-	
+
 	private Random random = new Random();
-	
+
 	private Dice() {
-		
+
 	}
 
 	public static Dice get() {
@@ -20,7 +25,7 @@ public class Dice {
 		}
 		return instance;
 	}
-	
+
 	public int roll() {
 		return random.nextInt(MAX_NUMBER) + 1;
 	}
